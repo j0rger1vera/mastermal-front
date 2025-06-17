@@ -16,7 +16,7 @@ export class NuevoProductoComponent {
   constructor(private formBuilder: FormBuilder, private productoService: ProductoService) {
     this.formulario = this.formBuilder.group({
       codigo: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
-      nombre: ['', [Validators.required, soloTexto()]],
+      nombre: ['', [Validators.required]],
       precio: ['', [Validators.required, validarDecimalConDosDecimales()]],
       stock: ['', [Validators.required, validarDecimalConDosDecimales()]],
       activo: [1],

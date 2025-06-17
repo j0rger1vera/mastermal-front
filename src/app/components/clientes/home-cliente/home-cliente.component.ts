@@ -43,6 +43,7 @@ export class HomeClienteComponent {
       cleinte.idCliente.toString().includes(input.value.toLowerCase()) ||
       cleinte.rucDni.toLowerCase().includes(input.value.toLowerCase()) ||
       cleinte.nombre.toLowerCase().includes(input.value.toLowerCase()) ||
+      cleinte.celular.toLowerCase().includes(input.value.toLowerCase()) ||
       cleinte.direccion.toLowerCase().includes(input.value.toLowerCase()) ||
       cleinte.correo.toLowerCase().includes(input.value.toLowerCase())
     );

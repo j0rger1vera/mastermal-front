@@ -5,7 +5,7 @@
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div>
-      <input [maxLength]="15" pattern="[a-zA-Z0-9]*" type="text" formControlName="rucDni" placeholder="Dni" (keyup)="validarCodigo($event) " >
+      <input [maxLength]="15" pattern="[a-zA-Z0-9]*" type="text" formControlName="rucDni" placeholder="NIT/RUT" (keyup)="validarCodigo($event) " >
       <span *ngIf="formulario.get('cantidadProducto')?.hasError('cantidadInvalida')  && formulario.get('rucDni') && formulario.get('rucDni')!.errors && formulario.get('rucDni')!.touched">
         Por favor, ingrese solo números
       </span>
@@ -20,11 +20,19 @@
     </div>
 
     <div>
-      <input type="text" formControlName="direccion" placeholder="Direccion">
+      <input type="text" formControlName="direccion" placeholder="Dirección">
       <span *ngIf="formulario.get('direccion')!.invalid && (formulario.get('direccion')?.dirty || formulario.get('direccion')?.touched)">
         Por favor, ingrese un valor válido.
       </span>
     </div>
+
+    <div>
+      <input type="celular" formControlName="celular" placeholder="Celular">
+      <span *ngIf="formulario.get('celular')!.invalid && (formulario.get('celular')!.dirty || formulario.get('celular')!.touched)">
+        Por favor, ingrese un número de celular válido.
+      </span>
+    </div>
+
 
     <div>
       <input type="email" formControlName="correo" placeholder="Correo">

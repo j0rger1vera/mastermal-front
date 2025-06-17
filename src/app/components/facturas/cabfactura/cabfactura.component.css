@@ -1,5 +1,5 @@
 .formulario{
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 51, 204);
   margin: auto;
   margin-top: 20px;
   border-radius: 20px;
@@ -10,8 +10,6 @@
 .formulario form, label{
   margin: 5px auto;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
   
 }
 .formulario form input, button, select{
@@ -44,19 +42,132 @@
   font-size: 16px;
 }
 
-.formulario p.nota{
-  background-color: rgb(226, 68, 68);
+
+.formulario form button, .btn-nuevo-cli{
+  cursor: pointer;
+  grid-column: 4/-1;
+  border-radius: 100px;
+  background-color: rgb(67, 164, 255);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.formulario p.notaTittle{
+  background-color: rgb(0, 51, 204);
   color: #fff;
   width: 100%;
   height: 50px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
-  padding-left: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
+.formulario p.notaSubTittle{
+  background-color: rgb(0, 51, 204);
+  color: #fff;
+  width: 100%;
+  height: 50px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.formulario p.nota{
+  background-color: rgb(0, 51, 204);
+  color: #fff;
+  width: 100%;
+  height: 50px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+  line-height: 1.5em
+}
+
+.formulario label.form{
+  background-color: rgb(0, 51, 204);
+  color: #fff;
+  width: 40%;
+  height: 50px;
+  display: flex;
+  margin-right: 3px;
+  padding-right: 3px;
+  margin-bottom: 1px;
+  vertical-align: bottom;
+  padding-bottom: 2px;
+  margin-top: 16px;
+}
+
+.formulario label.orden{
+  background-color: rgb(0, 51, 204);
+  color: #fff;
+  width: 37%;
+  height: 50px;
+  display: flex;
+  margin-right: 3px;
+  padding-right: 3px;
+  margin-bottom: 1px;
+  vertical-align: bottom;
+  padding-bottom: 2px;
+  margin-top: 16px;
+}
+
+.formulario label.fecha{
+  background-color: rgb(0, 51, 204);
+  color: #fff;
+  width: 30%;
+  height: 50px;
+  display: flex;
+  margin-right: 3px;
+  padding-right: 3px;
+  margin-bottom: 1px;
+  vertical-align: bottom;
+  padding-bottom: 2px;
+  margin-top: 16px;
+}
+
+
+.formulario label.lcliente{
+  background-color: rgb(0, 51, 204);
+  color: #fff;
+  width: 20%;
+  height: 50px;
+  display: flex;
+  margin-right: 3px;
+  padding-right: 3px;
+  margin-bottom: 1px;
+  vertical-align: bottom;
+  padding-bottom: 2px;
+  margin-top: 16px;
+  margin-left: 15%;
+}
+
+.formulario label.nombrecliente{
+  background-color: rgb(0, 51, 204);
+  color: #fff;
+  width: 30%;
+  height: 50px;
+  display: flex;
+  margin-right: 3px;
+  padding-right: 3px;
+  margin-bottom: 1px;
+  vertical-align: bottom;
+  padding-bottom: 2px;
+  margin-top: 16px;
+  margin-left: 15%;
+}
 
 .formulario p.datos{
   
@@ -154,8 +265,24 @@ div.nuevo-usuario span{
   color: #fff;
   font-weight: 600;
   font-size: 16px;
-  
+}
 
+
+.btn-nuevo-client{
+  margin: 5px auto;
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+}
+.btn-nuevo-client button{
+  background-color: #57b846;
+  cursor: pointer;
+  grid-column: 4 / -1;
+  border-radius: 100px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 div.productos{
@@ -234,10 +361,12 @@ td button.editar, td button.check{
 }
 
 .valores-a-pagar{
-  border-radius: 10px;
+  width: 30%;
+  float: right;
+  border-radius: 2px;
   overflow: hidden;
-  border: 1px solid #949494;
-  margin-left: 5px;
+  border: 1px solid #2d2d2d;
+  margin-right: 13.2%;
 }
 
 .valores-a-pagar p{

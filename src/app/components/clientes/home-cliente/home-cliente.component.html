@@ -3,7 +3,7 @@
 
 <div class="table-container">
   <p class="rojo">
-    Tabla de clientes
+    Listado de clientes
   </p>
 
   <div class="buscar">
@@ -20,9 +20,10 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Dni</th>
+            <th>NIT/RUT</th>
             <th>Nombre</th>
             <th>Direccion</th>
+            <th>Celular</th>
             <th>Correo</th>
             <th>Activo</th>
             <th>FechaCreacion</th>
@@ -37,6 +38,7 @@
             <td>{{ cliente.rucDni }}</td>
             <td >{{ cliente.nombre }}</td>
             <td>{{ cliente.direccion }}</td>
+            <td>{{ cliente.celular }}</td>
             <td>{{ cliente.correo }}</td>
             <td>{{ cliente.activo }}</td>
             <td>{{ cliente.fechaCreacion }}</td>

@@ -14,6 +14,11 @@ export class FacturasService {
   getData(){
     return this.http.get(`${this.URL_API}/cab-factura`);
   }
+
+  getFacturacion(){
+    return this.http.get(`${this.URL_API}/cab-factura/balance`);
+  }
+
   guardarCabecera(cabecera: any) {
     return this.http.post(`${this.URL_API}/cab-factura`, cabecera);
   }

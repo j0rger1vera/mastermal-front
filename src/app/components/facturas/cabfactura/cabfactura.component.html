@@ -1,162 +1,212 @@
 <div class="formulario">
+
+  <p class="notaTittle">CTP MASTERMAL</p>
+  <p class="notaSubTittle">COMPUTER TO CONVENTIONAL PLATE</p>
+  <br>
+  <p class="nota"><br><br>
+    Cra: 28 #10-40 Local 117-118 | Bogotá<br>
+    Telefonos: 3225335631 - 3105049241<br>
+    E-mail: ctpmastermal@gmail.com<br>
+    Centro Nacional de las Artes Gráficas Ricaurte<br><br>
+  </p>
+  <!--div-- class="btn-nuevo-cont">
+    <button style="width: 160px;" (click)="cambiarModoOculto()" class="btn-nuevo">Crear cliente</button>
+  </!--div-->
   
-  <div class="btn-nuevo-cont">
-    <button (click)="cambiarModoOculto()" class="btn-nuevo">➕ Nuevo usuario</button>
-  </div>
-  
-  <label for="">Datos factura</label>
+  <br><br>
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <div>
+    <div style="width: 70%; margin: 3% 15% 0 7%;color: white;">      
+      <TABLE BORDER style="text-align: center;border-collapse:collapse; border:none;background-color: transparent;" cellpadding="0" cellspacing="0">
+        <TR style="background-color: transparent; height: 50%;">
+          <TD style="width: 34%;">
+            <div style="width: 100%;">      
+              <label style="text-align: end;">No. Orden: </label>
+            </div>
+          </TD>
+          <TD style="text-align: start;width: 25%;">
+            <div><input style="width: 30%;text-align: start;border-radius: 5px; background-color: #9e9d9d; color: black; font-weight: bold; font-size: larger; text-align: center ;" class="disabled-input"  type="text" formControlName="numFactura" placeholder="numFactura">
+              <span *ngIf="formulario.get('numFactura') && formulario.get('numFactura')!.errors && formulario.get('numFactura')!.touched">
+                Por favor, ingrese solo texto en el campo de nombre.
+              </span>
+            </div>
+          </TD> 
+          <TD style="text-align: end;;width: 25%;">
+            <label>Fecha: </label>
+          </TD>
+          <TD style="width: 45%;">
+            <div style="width: 130px;float: left;">
+              <table style="text-align: center;border-collapse:collapse; border:none;background-color: transparent;">
+                <tr style="background-color: transparent;">
+                  <td style="padding: inherit;">
+                    <input style="float: lef;width: 100px; margin-left: 0%;border-radius: 5px;" class="disabled-input" type="text" 
+                    formControlName="fecha" [value]="hoy | date:'dd-MM-YYYY'">
+                  </td>
+                  <td><button style="width: 150px;background-color: #57b846; align-items: end;font-size: 15px;" (click)="cambiarModoOculto()" class="btn-nuevo">
+                    Nuevo cliente</button>
+                  </td>
+                </tr>
+              </table> 
+                     
+              
+            </div>
+          </TD>
+        </TR>
+        <TR style="background-color: transparent;">
+          <TD style="width: 15%;">
+            <div style="width: 100%;">                 
+              <label style="text-align: end;">Cliente: </label>
+            </div>
+          </TD> 
+          <TD>
+            <div style="width: 60px;float: left;">
+              <input style="width: 100%;border-radius: 5px 0px 0px 5px; background-color: yellow;" (focus)="listarClientes()" type="text" list="cliente" (change)="seleccionarCliente($event.target)" formControlName="cliente" placeholder="cliente">      
+              <datalist id="cliente" >
+                <option *ngFor="let cliente of clientes" [value]="cliente.idCliente">{{cliente.nombre}}</option>
+              </datalist>      
+              <!--span-- *ngIf="formulario.get('cliente')!.invalid && (formulario.get('cliente')?.dirty || formulario.get('cliente')?.touched)">
+                Por favor, ingrese un correo válido.
+              </!--span-->
+            </div>
+            <div style="width: auto;">            
+              <input style="border-radius: 0px 5px 5px 0px;margin-left: 4px;" class="disabled-input" type="text" formControlName="razonSocial" placeholder="nombre" [value]="clienteSeleccionado?.nombre" >
+              <span *ngIf="formulario.get('razonSocial')!.invalid && (formulario.get('razonSocial')!.dirty || formulario.get('razonSocial')!.touched)">
+                Por favor, ingrese un valor válido.
+              </span>
+            </div>
+          </TD> 
+          <TD>
+            <div style="text-align: end;">      
+              <label>Identificación: </label>
+            </div>
+          </TD>
+          <TD>
+            <div>  
+              <input style="width: 220%; margin-left: 0%;border-radius: 5px; background-color: #9e9d9d; color: black; font-size: larger;" 
+              type="text" formControlName="ruc" placeholder="NIT" 
+              [value]="clienteSeleccionado?.rucDni" >
+              <span *ngIf="formulario.get('ruc')!.invalid && (formulario.get('ruc')!.dirty || formulario.get('ruc')!.touched)">
+                Por favor, ingrese un valor válido.
+              </span>
+            </div>
+          </TD>
+        </TR>
+        <TR>
+        </TR>
+      </TABLE>
       
-      <input class="disabled-input"  type="text" formControlName="numFactura" placeholder="numFactura">
-      <span *ngIf="formulario.get('numFactura') && formulario.get('numFactura')!.errors && formulario.get('numFactura')!.touched">
-        Por favor, ingrese solo texto en el campo de nombre.
-      </span>
+      <br>
+      <br>
+      <form [formGroup]="productosForm">
+        <div>
+          <table style="width: 90%; text-align: center;border-collapse:collapse; border:none;background-color: transparent; margin: 0 15% 0 18%; color: white;">
+            <tr style="background-color: transparent;">
+              <td style="width: 50%;">
+                  <div style="width: 70px;float: left;">
+                    <input style="width: 100%;border-radius: 5px 0px 0px 5px; background-color: yellow;" (focus)="listarProductos()" type="text" list="productos" (change)="seleccionarProdcuto($event.target)" 
+                    formControlName="codProducto" placeholder="producto">
+
+                    <datalist id="productos" >
+                      <option *ngFor="let producto of productos" [value]="producto.codigo">{{producto.nombre}}</option>
+                    </datalist>
+                    <!--span-- *ngIf="formulario.get('cliente')!.invalid && (formulario.get('cliente')?.dirty || formulario.get('cliente')?.touched)">
+                      Por favor, ingrese un correo válido.
+                    </!--span-->
+                  </div>
+                  <div style="width: auto;">            
+                    <input style="width: 330px; border-radius: 0px 5px 5px 0px;margin-left: 4px;" class="disabled-input"  type="text" formControlName="nombreProducto" placeholder="Nombre del producto" [value]="productoSeleccionado?.nombre">
+                    <span *ngIf="productosForm.get('nombreProducto')!.invalid && (productosForm.get('nombreProducto')!.dirty || productosForm.get('nombreProducto')!.touched)">
+                      Por favor, ingrese un valor válido.
+                    </span>
+                  </div>
+              </td>
+              <td style="width: 10%;">
+                <p>Cantidad:</p>
+              </td>
+              <td style="width: 10%;">
+                <input style="width: 100%;border-radius: 5px 5px 5px 5px" min="1" type="number" formControlName="cantidadProducto" placeholder="Cantidad del producto" (keyup)="validarStock($event)">
+                <span *ngIf="productosForm.get('cantidadProducto')?.hasError('cantidadInvalida')  && productosForm.get('cantidadProducto')!.invalid && (productosForm.get('cantidadProducto')!.dirty || productosForm.get('cantidadProducto')!.touched)">
+                  Por favor, ingrese un valor válido.
+                </span>
+                <span *ngIf="!hayStock">*Valor mayor al stock disponible</span>
+              </td>
+              <td style="width: 14%;">
+                <p style="width: 100%;text-align: end;">Vr. Unitario:</p></td>
+              <td>
+                <input min="0" style="border-radius: 5px 5px 5px 5px; margin: 0%; width: 99%;" 
+                type="number" formControlName="valunitario" 
+                (change)="setValUnitario($event.target)" value={{productoSeleccionado?.precio}}>
+
+                <!--input style="width: 100px;" type="number" formControlName="precioProducto" placeholder="Precio del producto" [value]="productoSeleccionado?.precio" -->
+                <span *ngIf="productosForm.get('precioProducto')!.invalid && (productosForm.get('precioProducto')!.dirty || productosForm.get('precioProducto')!.touched)">
+                  Por favor, ingrese un valor válido.
+                </span>
+              </td>
+              <td style="width: 10%;">
+                <button style="width: 150px;background-color: #57b846; align-items: end;font-size: 14px;" (click)="agregarProducto()">
+                  Sumar producto</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form>
     </div>
 
-
-    <div>
-
-      <input (focus)="listarClientes()" type="text" list="cliente" (change)="seleccionarCliente($event.target)" formControlName="cliente" placeholder="cliente">
-      
-      <datalist id="cliente" >
-        <option *ngFor="let cliente of clientes" [value]="cliente.idCliente">{{cliente.nombre}}</option>
-      </datalist>
-      
-      <span *ngIf="formulario.get('cliente')!.invalid && (formulario.get('cliente')?.dirty || formulario.get('cliente')?.touched)">
-        Por favor, ingrese un correo válido.
-      </span>
-
-    </div>
     
-    
-    <div>
-      
-      <input class="disabled-input"  type="text" formControlName="ruc" placeholder="ruc" [value]="clienteSeleccionado?.rucDni" >
-      <span *ngIf="formulario.get('ruc')!.invalid && (formulario.get('ruc')!.dirty || formulario.get('ruc')!.touched)">
-        Por favor, ingrese un valor válido.
-      </span>
-    </div>
-
-    <div>
-      <input class="disabled-input" type="text" formControlName="razonSocial" placeholder="razonSocial" [value]="clienteSeleccionado?.nombre" >
-      <span *ngIf="formulario.get('razonSocial')!.invalid && (formulario.get('razonSocial')!.dirty || formulario.get('razonSocial')!.touched)">
-        Por favor, ingrese un valor válido.
-      </span>
-    </div>
-    
-    <div>
-      <input class="disabled-input" type="email " formControlName="correo" placeholder="correo" [value]="clienteSeleccionado?.correo" >
-      <span *ngIf="formulario.get('correo')!.invalid && (formulario.get('correo')!.dirty || formulario.get('correo')!.touched)">
-        Por favor, ingrese un valor válido.
-      </span>
-    </div>
-
-
-  <div class="productos">
-    <label for="">Productos</label>
-  
-    <form [formGroup]="productosForm">
-      <!-- <div>
-        <input type="number" formControlName="codProducto" placeholder="Código del producto">
-        <span *ngIf="productosForm.get('codProducto')!.invalid && (productosForm.get('codProducto')!.dirty || productosForm.get('codProducto')!.touched)">
-          Por favor, ingrese un valor válido.
-        </span>
-      </div> -->
-
-      <div>
-        <p>Id producto:</p>
-        <input (focus)="listarProductos()" 
-        type="text" list="productos" 
-        (change)="seleccionarProdcuto($event.target)" 
-        formControlName="codProducto" 
-        placeholder="productos"
-        >
-
-        <datalist id="productos" >
-          <option *ngFor="let producto of productos" [value]="producto.codigo">{{producto.nombre}}</option>
-        </datalist>
-        
-        <span *ngIf="productosForm.get('codProducto')!.invalid && (productosForm.get('codProducto')!.dirty || productosForm.get('codProducto')!.touched)">
-          Por favor, ingrese un valor válido.
-        </span>
-  
-      </div>
-
-      <div>
-        <p>Nombre producto:</p>
-        <input class="disabled-input"  type="text" formControlName="nombreProducto" placeholder="Nombre del producto" [value]="productoSeleccionado?.nombre">
-        <span *ngIf="productosForm.get('nombreProducto')!.invalid && (productosForm.get('nombreProducto')!.dirty || productosForm.get('nombreProducto')!.touched)">
-          Por favor, ingrese un valor válido.
-        </span>
-      </div>
-      <div>
-        <p>Precio:</p>
-        <input class="disabled-input"  type="number" formControlName="precioProducto" placeholder="Precio del producto" [value]="productoSeleccionado?.precio" >
-        <span *ngIf="productosForm.get('precioProducto')!.invalid && (productosForm.get('precioProducto')!.dirty || productosForm.get('precioProducto')!.touched)">
-          Por favor, ingrese un valor válido.
-        </span>
-      </div>
-      <div>
-        <p>Cantidad:</p>
-        <input min="1" type="number" formControlName="cantidadProducto" placeholder="Cantidad del producto" (keyup)="validarStock($event)">
-        <span *ngIf="productosForm.get('cantidadProducto')?.hasError('cantidadInvalida')  && productosForm.get('cantidadProducto')!.invalid && (productosForm.get('cantidadProducto')!.dirty || productosForm.get('cantidadProducto')!.touched)">
-          Por favor, ingrese un valor válido.
-        </span>
-        <span *ngIf="!hayStock">*Valor mayor al stock disponible</span>
-
-      
-      </div>
-
-      <p *ngIf="this.productosForm.get('nombreProducto')?.value" > *Tiene en stock: {{stockProducto}}</p>
-      <button (click)="agregarProducto()">➕ Agregar producto</button>
-    </form>
-
-  </div>
-
-
-
-
-  <div class="separador">
-    <div>
-      <table>
+    <div style="width: 66.2%; margin: 0 15% 0 20.5%;color: rgb(9, 0, 0);border-collapse:collapse; border:none;">
+      <table [width]="1230" style="border-collapse:collapse; border:none;">
         <thead>
           <tr>
-            <th>Cod Producto</th>
-            <th>Nombre Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th class="eliminar">Acciones</th>
+            <th style="width: 30%;background-color: rgb(97, 194, 232);">Producto</th>
+            <th style="width: 24%;background-color: rgb(97, 194, 232);">Cantidad</th>
+            <th style="width: 24%;background-color: rgb(97, 194, 232);">Vr. Unitario</th>
+            <th style="width: 19%;background-color: rgb(97, 194, 232);">Sub-total</th>
+            <th style="width: 2%;background-color: rgb(97, 194, 232);" class="eliminar"></th>
           </tr>
-        </thead>
-        
-        <tbody>
-          
+        </thead>        
+        <tbody>          
           <tr *ngFor="let listProducto of listProductos">
-            <td>{{ listProducto.codProducto }}</td>
-            <td >{{ listProducto.nombreProducto }}</td>
-            <td>{{ listProducto.precioProducto }}</td>
-            <td>{{ listProducto.cantidadProducto }}</td>
+            <td style="width: 30%;">{{ listProducto.nombreProducto }}</td>
+            <td style="width: 24%;">{{ listProducto.cantidadProducto }}</td>
+            <td style="width: 24%;">{{ (listProducto.valunitario != null ? 
+            listProducto.valunitario : listProducto.precioProducto) | currency }}</td>
+            <td style="width: 19%; background-color: #9e9d9d;">{{ (listProducto.valunitario != null ? 
+            listProducto.valunitario * listProducto.cantidadProducto : listProducto.precioProducto * listProducto.cantidadProducto) | currency }}</td>
 
-            <td id="eliminar" class="eliminar">
+            <td style="width: 2%; background-color: #9e9d9d;" id="eliminar" class="eliminar">
               <button (click)="eliminarPorId(listProducto)">❌</button>
             </td>
           </tr>
-          <tr class="sin-datos-tabla" *ngIf="listProductos.length === 0">No hay productos registrados*</tr>
+          <!--tr-- class="sin-datos-tabla" *ngIf="listProductos.length === 0">No hay productos registrados*</!--tr-->
         </tbody>
       </table>
     </div>
-  </div>
-
   <div class="valores-a-pagar">
-    <p class="impuesto-usado"><span>*Porcentaje de impuesto usado: {{porcentajeIva}}%</span> </p>
-    <p><span>subtotal: </span> {{subtotal | currency }}  </p>
-    <p><span>IGV:</span> ${{igv | number: '1.2-2' }}</p>
-    <p><span>Total:</span> ${{total | number: '1.2-2'  }}</p>
-   
+    <!--p class="impuesto-usado"><span>*Porcentaje de impuesto usado: {{porcentajeIva}}%</span> </!--p-->
+    <p style="background-color: #9e9d9d;">
+      <span style="background-color: #9e9d9d; color: black;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;">
+      TOTAL:</span> ${{total | number: '1.2-2'  }}</p>
+    <!--p-- style="background-color: #fff;"><span style="border: #000;">subtotal: </span> {{subtotal | currency }}  </!--p-->
+    <!--p style="background-color: #fff;"><span>IVA:</span> ${{igv | number: '1.2-2' }}</!--p -->
+  
+
+    <p style="background-color: #fff;">
+      <span style="color: black;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;"><br>
+      ABONO:</span>
+      <input style="border-radius: 2px 2px 2px 2px; margin: 0%; height: 99%; width: 99%;font-size: 16px;"
+       type="number" formControlName="abono" 
+      (change)="calcularSaldo($event.target)" [value]="abono" >
+    </p><span *ngIf="productosForm.get('abono')?.hasError('cantidadInvalida')">Por favor, ingrese un valor válido.</span>
+  
+
+    <p style="background-color: #9e9d9d;padding-bottom: 5px;">
+      <span style="color: black;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;">
+      CREDITO:</span>
+      ${{credito | number: '1.2-2'  }}</p>
   </div>
-    
-    <button type="submit">Guardar Datos</button>
+    <br><br><br>
+    <button style="color: black; margin-right: 1%; float: right;width: 10%; display: inline;border-radius: 4px 4px 4px 4px; background-color: rgb(187, 184, 184);" 
+    type="submit">Grabar</button>
+    <br><br><br><br><br><br><br><br>
   </form>
   
 

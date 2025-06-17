@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, DoCheck, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs';
@@ -14,6 +15,10 @@ import { cantidadMayorQueCero, soloTexto, validarDecimalConDosDecimales } from '
 })
 export class CabfacturaComponent implements DoCheck {
 
+  hoy: Date = new Date();
+  pipe = new DatePipe('en-US');
+  fecha = this.pipe.transform(this.hoy, 'dd/MM/YYYY');
+  
   clientes: any[] = [];
   productos: any[] = [];
   datosCabecera: any = {};
@@ -25,10 +30,14 @@ export class CabfacturaComponent implements DoCheck {
   modoOculto: boolean = true;
 
   subtotal: number = 0;
-  porcentajeIva: number = 12;
+  //porcentajeIva: number = 12;
   igv: number = 0;
   total: number = 0;
   stockProducto = '';
+  abono: number = 0;
+  valunitario: number = 0;
+  totalEfectivo: number = 0;
+  credito: number = 0;
   hayStock = true;
   constructor(
               private formBuilder: FormBuilder, 
@@ -39,16 +48,17 @@ export class CabfacturaComponent implements DoCheck {
     this.formulario = this.formBuilder.group({
       numFactura: ['', [Validators.required]],
       cliente: ['', [Validators.required, ]],
-      ruc: ['', [Validators.required ]],
-      razonSocial: ['', [Validators.required, ]],
-      correo: ['', [Validators.required, ]],
+      ruc: [],
+      razonSocial: ['', ],
+      correo: ['', ],
       
     });
 
     this.productosForm = this.formBuilder.group({
-      codProducto: ['', [Validators.required]],
-      nombreProducto: ['', [Validators.required]],
-      precioProducto: ['', [Validators.required, ]],
+      codProducto: ['', ],
+      nombreProducto: ['', [Validators.required ]],
+      precioProducto: [],
+      valunitario: [],
       cantidadProducto: [1, [Validators.required, cantidadMayorQueCero() ]],
     });
   }
@@ -75,7 +85,7 @@ export class CabfacturaComponent implements DoCheck {
     console.log('Etrasssx...');
 
     this.formulario.patchValue({
-      ruc: this.clienteSeleccionado.rucDni,
+      //ruc: this.clienteSeleccionado.rucDni,
       razonSocial: this.clienteSeleccionado.nombre,
       correo: this.clienteSeleccionado.correo
     });
@@ -85,7 +95,10 @@ export class CabfacturaComponent implements DoCheck {
       "rucCliente": this.formulario.value.ruc,
       "subtotal": this.subtotal,
       "igv": this.igv,
-      "total": this.total
+      "total": this.total,
+      "abono": this.abono,
+      "saldo": this.credito,
+      "fecha": this.fecha,
     };
     console.log("Datos a enviar", datosEnviar)
 
@@ -121,10 +134,14 @@ export class CabfacturaComponent implements DoCheck {
       this.generarFactura();
       this.clienteSeleccionado = null;
       this.resetListProductos();
+      this.totalEfectivo = 0;
+      this.abono = 0;
+      this.calcularValores(this.listProductos);
     }, error => {
       console.error('Error al enviar datos:', error);
       alert('Error al enviar datos: los campos no cumplen con los formatos requeridos');	
     });
+    this.abono = 0;
   }
 
   resetListProductos(): void {
@@ -132,6 +149,9 @@ export class CabfacturaComponent implements DoCheck {
     this.subtotal = 0;
     this.igv = 0;
     this.total = 0;
+    this.abono = 0;
+    this.credito = 0;
+    this.totalEfectivo = 0;
   }
 
   generarFactura(){
@@ -181,17 +201,30 @@ export class CabfacturaComponent implements DoCheck {
     console.log("prod select ",this.productoSeleccionado);
     console.log("lista de prod ",this.listProductos);
 
-    this.subtotal = this.listProductos.reduce((total, producto) => total + producto.precioProducto, 0);
-
+    //this.subtotal = this.listProductos.reduce((total, producto) => total + producto.precioProducto, 0);
     this.calcularValores(this.listProductos);
   }
 
   calcularValores( list: any){
-    this.subtotal = list.reduce((total: any, producto: any) => total + (producto.precioProducto * producto.cantidadProducto), 0);
-    this.igv = this.subtotal * (this.porcentajeIva / 100);
+    //this.subtotal = list.reduce((total: any, producto: any) => total + (producto.precioProducto * producto.cantidadProducto), 0);
+    //this.igv = this.subtotal * (this.porcentajeIva / 100);
+    this.subtotal = this.listProductos.reduce((total, producto) => total + (
+      producto.valunitario != null ? producto.valunitario * producto.cantidadProducto :
+      producto.precioProducto * producto.cantidadProducto
+    ), 0);
     this.total = this.subtotal + this.igv;
+    this.credito = this.total - this.abono;
   }
   
+  calcularSaldo(efecti: any){
+    this.abono =  efecti.value;
+    this.credito = this.total - efecti.value;
+  }
+
+  setValUnitario(val: any){
+    this.subtotal = val.value;
+  }
+
   eliminarPorId(producto: any) {
     const indice = this.listProductos.indexOf(producto);
     if (indice !== -1) {
@@ -224,9 +257,10 @@ export class CabfacturaComponent implements DoCheck {
   validarFormularios(){
     if (this.clienteSeleccionado) {
       this.formulario.patchValue({
-        ruc: this.clienteSeleccionado.rucDni,
+        //ruc: this.clienteSeleccionado.rucDni, //habilita el inputText para digitar un valor
         razonSocial: this.clienteSeleccionado.nombre,
-        correo: this.clienteSeleccionado.correo
+        correo: this.clienteSeleccionado.correo,
+        fecha: this.clienteSeleccionado.fecha
       });
     } else {
       // Si no hay cliente seleccionado, se deben borrar los valores y marcar los campos como inválidos
@@ -235,7 +269,7 @@ export class CabfacturaComponent implements DoCheck {
         razonSocial: '',
         correo: ''
       });
-      this.formulario.get('ruc')?.setValidators(Validators.required);
+      //this.formulario.get('ruc')?.setValidators(Validators.required);//Obliga a digitar un valor 
       this.formulario.get('razonSocial')?.setValidators(Validators.required);
       this.formulario.get('correo')?.setValidators(Validators.required);
     }
@@ -264,6 +298,7 @@ export class CabfacturaComponent implements DoCheck {
     this.formulario.get('ruc')?.updateValueAndValidity();
     this.formulario.get('razonSocial')?.updateValueAndValidity();
     this.formulario.get('correo')?.updateValueAndValidity();
+    this.formulario.get('fecha')?.updateValueAndValidity();
 
      // Actualizar la validación de los campos
      this.productosForm.get('nombreProducto')?.updateValueAndValidity();

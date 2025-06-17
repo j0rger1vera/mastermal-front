@@ -14,7 +14,7 @@
     <div>
       <input type="text" formControlName="nombre" placeholder="Nombre">
       <span *ngIf="formulario.get('nombre') && formulario.get('nombre')!.errors && formulario.get('nombre')!.touched">
-        Por favor, ingrese solo texto
+        Por favor, un valor válido.
       </span>
     </div>
 

@@ -20,6 +20,7 @@ import { LoginComponent } from './page/login/login.component';
 import { PageModule } from './page/page.module';
 import { CabfacturaComponent } from './components/facturas/cabfactura/cabfactura.component';
 import { ListaFacturasComponent } from './components/facturas/lista-facturas/lista-facturas.component';
+import { ListaFacturacionComponent } from './components/facturas/facturacion/facturacion.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ListaFacturasComponent } from './components/facturas/lista-facturas/lis
     LoginComponent,
     CabfacturaComponent,
     ListaFacturasComponent,
+    ListaFacturacionComponent,
    
 
     

@@ -17,6 +17,7 @@ export class NuevoComponent {
       nombre: ['', [Validators.required, soloTexto()]],
       direccion: ['', [Validators.required]],
       correo: ['', [Validators.required, validarCorreo()]],
+      celular: ['', [Validators.required]],
       activo: [1],
     });
   }

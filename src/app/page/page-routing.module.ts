@@ -8,6 +8,7 @@ import { Cod404Component } from '../components/cod404/cod404.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { HomeClienteComponent } from '../components/clientes/home-cliente/home-cliente.component';
 import { ListaFacturasComponent } from '../components/facturas/lista-facturas/lista-facturas.component';
+import { ListaFacturacionComponent } from '../components/facturas/facturacion/facturacion.component';
 
 const routes: Routes = [
 
@@ -34,6 +35,10 @@ const routes: Routes = [
     {
       path: 'lista-factura',
       component: ListaFacturasComponent
+    },
+    {
+      path: 'facturacion',
+      component: ListaFacturacionComponent
     },
    
 

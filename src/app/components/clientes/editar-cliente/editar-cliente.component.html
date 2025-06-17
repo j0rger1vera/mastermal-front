@@ -4,7 +4,7 @@
     <div>
       <label for="rucDni">Dni:</label>
       <div>
-        <input maxlength="15" type="text" formControlName="rucDni" placeholder="Dni">
+        <input maxlength="15" type="text" formControlName="rucDni" placeholder="NIT/RUT">
         <span *ngIf="personaForm.get('rucDni') && personaForm.get('rucDni')!.errors && personaForm.get('rucDni')!.touched">
           Por favor, ingrese solo números
         </span>
@@ -35,6 +35,16 @@
         <input class="fecha" type="date" formControlName="fechaCreacion" placeholder="Fecha Creacion">
         <span *ngIf="personaForm.get('fechaCreacion')?.invalid && (personaForm.get('fechaCreacion')?.dirty || personaForm.get('fechaCreacion')?.touched)">
           Por favor, ingrese una fecha válida.
+        </span>
+      </div>
+    </div>
+
+    <div>
+      <label for="celular">Celular:</label>
+      <div>
+        <input class="" type="celular" formControlName="celular" placeholder="Celular">
+        <span *ngIf="personaForm.get('celular')?.invalid && (personaForm.get('celular')?.dirty || personaForm.get('celular')?.touched)">
+          Por favor, ingrese un número de celular válido.
         </span>
       </div>
     </div>
