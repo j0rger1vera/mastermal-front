@@ -31,5 +31,8 @@ export class ClientesService {
   verificarExistencia(cod: string) {
     return this.http.get<ResponseData>(`${this.URL_API}/clientes/verificar-cliente/${cod}`);
   }
-
+  
+  generarNumeroNit(){
+    return this.http.get(`${this.URL_API}/clientes/genera-nit`);
+  }
 }

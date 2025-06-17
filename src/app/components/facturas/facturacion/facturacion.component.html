@@ -1,52 +1,65 @@
 
 <div class="table-container">
+  
+
+  <script>
+    // Obtener la fecha actual
+    var fecha = new Date();
+
+    // Formatear la fecha en formato día/mes/año
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1; // El mes comienza en 0
+    var anio = fecha.getFullYear();
+    var fechaFormateada = dia + "/" + mes + "/" + anio;
+
+    // Insertar la fecha formateada en el div
+    document.getElementById("fecha").innerHTML = fechaFormateada;
+  </script>
   <p class="rojo">
-    Lista de facturación por clientes
+    SALDOS DE CREDITOS A CLIENTES
   </p>
 
-  <div class="buscar">
-    <label for="">Buscar: </label>
-    <input type="text" (keyup)="buscar($event)">
-    
-  </div>
-
   
-  <div class="separador">
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Num Factura</th>
-            <th>NIT</th>
-            <th>Subtotal</th>
-            <th>Igv</th>
-            <th>Total Facturado</th>
-            <th>Total Abono</th>
-            <th>Total Saldo</th>
-            <th class="eliminar">Acciones</th>
-          </tr>
-        </thead>
+  <div style="padding: 15px;">
+
+    <div class="buscar">
+      <label for="">Buscar: </label>
+      <input type="text" placeholder="NIT ó Cliente" (keyup)="buscar($event)">
+      
+    </div>
+    
+    <div class="separador">
+      <div style="border: 0px solid rgb(182, 182, 182);">
         
+        <table>
+          <thead>
+            <tr>
+              <th>Identificación</th>
+              <th>Nombre del Cliente</th>
+              <th>Prestamos</th>
+              <th>Abonos</th>
+              <th>Saldo Actual</th>
+              <!--th class="eliminar">Acciones</th-->
+            </tr>
+          </thead>
+          
 
-        <tbody>
-
-          <tr *ngFor="let factura of facturasFiltradas">
-            <td>{{ factura.numeroFactura }}</td>
-            <td >{{ factura.rucCliente }}</td>
-            <td>{{ factura.subtotal }}</td>
-            <td>{{ factura.igv }}</td>
-            <td>{{ factura.total }}</td>
-            <td>{{ factura.abono }}</td>
-            <td>{{ factura.saldo }}</td>
-            <td class="eliminar">
-              <button (click)="eliminarPorId(factura.idFcatura)">❌</button>
-
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            <tr *ngFor="let factura of facturasFiltradas">
+              <td>{{ factura.nitCliente }}</td>
+              <td>{{ factura.nombreCliente }}</td>
+              <td >{{ factura.total }}</td>
+              <td>{{ factura.abono }}</td>
+              <td>{{ factura.saldo }}</td>
+              <!--td-- class="eliminar">
+                <button (click)="eliminarPorId(cliente.idCliente)">❌</button>
+                <button class="editar" (click)="toggleModoEdicion(cliente)">✏️</button>
+              </!--td-->
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-
 
 </div>

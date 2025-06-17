@@ -21,7 +21,7 @@ export class EditarProductoComponent {
     this.personaForm = this.fb.group({
       idProducto: '',
       codigo: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
-      nombre: ['', [Validators.required, soloTexto()]],
+      nombre: [''],
       precio: ['', [Validators.required, validarDecimalConDosDecimales()]],
       stock: ['', [Validators.required, validarDecimalConDosDecimales()]],
       activo: [1],
@@ -43,8 +43,8 @@ export class EditarProductoComponent {
   guardar(): void {
 
     const valoresFormulario = this.personaForm.value;
-    console.log("Persona ", this.productosEditar?.nombre);
-    console.log("Persona editada", valoresFormulario);
+    console.log("Producto ", this.productosEditar?.nombre);
+    console.log("Producto editada", valoresFormulario);
     
     if (this.personaForm.valid) {
       
@@ -59,7 +59,7 @@ export class EditarProductoComponent {
     
     this.productoService.actualizar(valoresFormulario).subscribe(
       response => {
-        console.log('Persona editada correctamente:', response);
+        console.log('Producto editado correctamente:', response);
         alert('Producto editado correctamente');
         this.modoOculto.emit();
         // window.location.reload();

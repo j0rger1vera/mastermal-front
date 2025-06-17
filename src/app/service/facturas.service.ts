@@ -16,7 +16,7 @@ export class FacturasService {
   }
 
   getFacturacion(){
-    return this.http.get(`${this.URL_API}/cab-factura/balance`);
+    return this.http.get(`${this.URL_API}/cab-factura/facturacion`);
   }
 
   guardarCabecera(cabecera: any) {
@@ -26,6 +26,7 @@ export class FacturasService {
   guardarDetalles(detalles: any) {
     return this.http.post(`${this.URL_API}/det-factura/guardar`, detalles);
   }
+
   generaFactura(){
     return this.http.get(`${this.URL_API}/cab-factura/genera-factura`);
   }

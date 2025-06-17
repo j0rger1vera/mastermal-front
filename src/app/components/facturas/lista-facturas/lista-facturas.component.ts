@@ -40,12 +40,12 @@ export class ListaFacturasComponent {
     const input = texto.target as HTMLInputElement;
     console.log(this.facturasFiltradas)
     this.facturasFiltradas = this.facturas.filter( (factura: any) =>
-      factura.idFcatura.toString().includes(input.value.toLowerCase()) ||
-      factura.numeroFactura.toString().includes(input.value.toLowerCase()) ||
-      factura.rucCliente.toString().includes(input.value.toLowerCase()) ||
-     factura.subtotal.toString().includes(input.value.toLowerCase()) ||
-     factura.igv.toString().includes(input.value.toLowerCase()) ||
-     factura.total.toString().includes(input.value.toLowerCase())
+      //factura.idFcatura.toString().includes(input.value.toLowerCase())
+      factura.numeroFactura.toString().includes(input.value)
+      || factura.nombreCliente.toString().includes(input.value)
+      //|| factura.rucCliente.toString().includes(input.value.toLowerCase())
+      //|| factura.subtotal.toString().includes(input.value.toLowerCase())
+      //|| factura.total.toString().includes(input.value.toLowerCase())
     );
   }
 

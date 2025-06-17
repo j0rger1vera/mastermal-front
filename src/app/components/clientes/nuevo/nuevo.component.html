@@ -1,12 +1,13 @@
 
 <div class="formulario">
-  <p class="nota">Registro de clientes: recuerde ingresar todos los campos</p>
+  <p class="nota">REGISTRO DE CLIENTES</p>
   <p class="datos">Datos:</p>
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div>
-      <input [maxLength]="15" pattern="[a-zA-Z0-9]*" type="text" formControlName="rucDni" placeholder="NIT/RUT" (keyup)="validarCodigo($event) " >
-      <span *ngIf="formulario.get('cantidadProducto')?.hasError('cantidadInvalida')  && formulario.get('rucDni') && formulario.get('rucDni')!.errors && formulario.get('rucDni')!.touched">
+      <input [maxLength]="15" pattern="[a-zA-Z0-9]*" 
+      type="text" formControlName="rucDni" placeholder="rucDni" (keyup)="validarCodigo($event) " >
+      <span *ngIf="formulario.get('rucDni') && formulario.get('rucDni')!.errors && formulario.get('rucDni')!.touched">
         Por favor, ingrese solo números
       </span>
       <span *ngIf="existe">Cliente ya existe</span>

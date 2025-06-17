@@ -3,7 +3,7 @@
   margin: auto;
   margin-top: 20px;
   border-radius: 20px;
-  padding: 20px;
+  /*padding: 20px;*/
   width: 97%;
 }
 .formulario form{
@@ -57,7 +57,7 @@
 
 
 .formulario p.datos{
-  
+  color: #fff;
   padding-left: 20px;
   margin: 20px 0;
   font-weight: 600;

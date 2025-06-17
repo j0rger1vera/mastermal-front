@@ -3,52 +3,56 @@
 
 <div class="table-container">
   <p class="rojo">
-    Listado de clientes
+    LISTADO DE CLIENTES
   </p>
 
-  <div class="buscar">
-    <label for="">Buscar: </label>
-    <input type="text" (keyup)="buscar($event)">
-    
-  </div>
-
-  <button id="nuevo" routerLink="/app/cliente/nuevo" >Nuevo +</button>
   
-  <div class="separador">
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>NIT/RUT</th>
-            <th>Nombre</th>
-            <th>Direccion</th>
-            <th>Celular</th>
-            <th>Correo</th>
-            <th>Activo</th>
-            <th>FechaCreacion</th>
-            <th class="eliminar">Acciones</th>
-          </tr>
-        </thead>
-        
+  <div style="padding: 30px;">
 
-        <tbody>
-          <tr *ngFor="let cliente of filtroClientes">
-            <td>{{ cliente.idCliente }}</td>
-            <td>{{ cliente.rucDni }}</td>
-            <td >{{ cliente.nombre }}</td>
-            <td>{{ cliente.direccion }}</td>
-            <td>{{ cliente.celular }}</td>
-            <td>{{ cliente.correo }}</td>
-            <td>{{ cliente.activo }}</td>
-            <td>{{ cliente.fechaCreacion }}</td>
-            <td class="eliminar">
-              <button (click)="eliminarPorId(cliente.idCliente)">❌</button>
-              <button class="editar" (click)="toggleModoEdicion(cliente)">✏️</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="buscar">
+      <label for="">Buscar: </label>
+      <input type="text"  placeholder="NIT ó Cliente ó Celuar" (keyup)="buscar($event)">
+      
+    </div>
+
+    <button id="nuevo" routerLink="/app/cliente/nuevo" >Nuevo +</button>
+    
+    <div class="separador">
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <!--th>ID</!--th>
+              <th>NIT/RUT</th-->
+              <th>Nombre</th>
+              <th>Direccion</th>
+              <th>Celular</th>
+              <th>Correo</th>
+              <th>Activo</th>
+              <th>FechaCreacion</th>
+              <th class="eliminar">Acciones</th>
+            </tr>
+          </thead>
+          
+
+          <tbody>
+            <tr *ngFor="let cliente of filtroClientes">
+              <!--td>{{ cliente.idCliente }}</!--td>
+              <td>{{ cliente.rucDni }}</!td-->
+              <td >{{ cliente.nombre }}</td>
+              <td>{{ cliente.direccion }}</td>
+              <td>{{ cliente.celular }}</td>
+              <td>{{ cliente.correo }}</td>
+              <td>{{ cliente.activo }}</td>
+              <td>{{ cliente.fechaCreacion }}</td>
+              <td class="eliminar">
+                <button (click)="eliminarPorId(cliente.idCliente)">❌</button>
+                <button class="editar" (click)="toggleModoEdicion(cliente)">✏️</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

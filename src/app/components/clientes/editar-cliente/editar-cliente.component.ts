@@ -23,9 +23,9 @@ export class EditarClienteComponent {
       idCliente: '',
       rucDni: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*'), Validators.maxLength(15)]],
       nombre: ['', [Validators.required, soloTexto()]],
-      direccion: ['', [Validators.required,]],
+      direccion: [],
       celular: ['', [Validators.required,]],
-      correo: ['', [Validators.required, validarCorreo()]],
+      correo: [],
       activo: ['', [Validators.required]],
       fechaCreacion: ['', [Validators.required]],
   

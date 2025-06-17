@@ -1,12 +1,12 @@
 /* Estilos para hacer que la tabla ocupe toda la pantalla */
 .table-container {
   width: 97%; 
-  height: 100%; 
-  margin: auto;
+  /*height: 100%; 1. desactivar esto para el tamaño del fondo dinamico*/
+  margin: 5px 5px 5px 20px;
   margin-top: 20px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 51, 204);
   border-radius: 20px;
-  padding: 20px;
+  padding: 20px;/*2. desactivar esto para el tamaño del fondo dinamico*/
 }
 .table-container .separador{
   margin-top: 20px;
@@ -16,7 +16,8 @@
   display: flex;
   justify-content: center;
   border: 1px solid rgb(182, 182, 182) ;
-  border-radius: 20px;
+  border-radius: 10px;
+  background-color: #fff;
 }
 table {
   width: 95%; 
@@ -78,17 +79,18 @@ td button.editar, td button.check{
   padding-left: 10px;
 }
 .buscar{
-  margin: 20px;
+  margin: 20px 20px 20px 20px;
 }
 .buscar label{
   font-weight: 600;
+  color: #fff;
 
 }
 
 p.rojo{
-  background-color: rgb(226, 68, 68);
+  background-color: rgba(226, 68, 68);
   color: #fff;
-  width: 100%;
+  /*width: 100%;*/
   height: 50px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -96,7 +98,9 @@ p.rojo{
   justify-content: left;
   align-items: center;
   padding-left: 20px;
-  
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: -20px;
 }
 
 

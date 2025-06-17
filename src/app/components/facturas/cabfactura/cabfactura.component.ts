@@ -20,6 +20,7 @@ export class CabfacturaComponent implements DoCheck {
   fecha = this.pipe.transform(this.hoy, 'dd/MM/YYYY');
   
   clientes: any[] = [];
+  personaEditar: any;
   productos: any[] = [];
   datosCabecera: any = {};
   clienteSeleccionado: any; 
@@ -47,10 +48,9 @@ export class CabfacturaComponent implements DoCheck {
               ) {
     this.formulario = this.formBuilder.group({
       numFactura: ['', [Validators.required]],
-      cliente: ['', [Validators.required, ]],
+      cliente: ['', [Validators.required]],
       ruc: [],
-      razonSocial: ['', ],
-      correo: ['', ],
+      razonSocial: ['', [Validators.required]],
       
     });
 
@@ -69,7 +69,7 @@ export class CabfacturaComponent implements DoCheck {
   
   
   ngOnInit(){
-    this.generarFactura();
+    this.generarNumeroFactura();
   }
 
   onSubmit() {
@@ -131,7 +131,7 @@ export class CabfacturaComponent implements DoCheck {
       console.log('Datos enviados correctamente:', response);
       alert('Datos registrados correctamente');
       this.formulario.reset();
-      this.generarFactura();
+      this.generarNumeroFactura();
       this.clienteSeleccionado = null;
       this.resetListProductos();
       this.totalEfectivo = 0;
@@ -154,7 +154,7 @@ export class CabfacturaComponent implements DoCheck {
     this.totalEfectivo = 0;
   }
 
-  generarFactura(){
+  generarNumeroFactura(){
     this.facturasService.generaFactura().subscribe(
       (resp: any) => {
         console.log(resp.data)
@@ -257,9 +257,9 @@ export class CabfacturaComponent implements DoCheck {
   validarFormularios(){
     if (this.clienteSeleccionado) {
       this.formulario.patchValue({
-        //ruc: this.clienteSeleccionado.rucDni, //habilita el inputText para digitar un valor
+        ruc: this.clienteSeleccionado.rucDni, //habilita el inputText para digitar un valor
         razonSocial: this.clienteSeleccionado.nombre,
-        correo: this.clienteSeleccionado.correo,
+        //correo: this.clienteSeleccionado.correo,
         fecha: this.clienteSeleccionado.fecha
       });
     } else {
@@ -322,6 +322,5 @@ export class CabfacturaComponent implements DoCheck {
     }
 
   }
-
 
 }

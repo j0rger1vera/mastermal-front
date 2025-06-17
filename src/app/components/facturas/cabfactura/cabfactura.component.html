@@ -15,16 +15,17 @@
   
   <br><br>
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <div style="width: 70%; margin: 3% 15% 0 7%;color: white;">      
+    <div style="margin: 3% 15% 0 7%;color: white;">      
       <TABLE BORDER style="text-align: center;border-collapse:collapse; border:none;background-color: transparent;" cellpadding="0" cellspacing="0">
         <TR style="background-color: transparent; height: 50%;">
-          <TD style="width: 34%;">
-            <div style="width: 100%;">      
+          <TD>
+            <div>      
               <label style="text-align: end;">No. Orden: </label>
             </div>
           </TD>
           <TD style="text-align: start;width: 25%;">
-            <div><input style="width: 30%;text-align: start;border-radius: 5px; background-color: #9e9d9d; color: black; font-weight: bold; font-size: larger; text-align: center ;" class="disabled-input"  type="text" formControlName="numFactura" placeholder="numFactura">
+            <div><input style="width: 30%;text-align: start;border-radius: 5px; background-color: #9e9d9d; color: black; font-weight: bold; font-size: larger; text-align: center ;" class="disabled-input" 
+              type="text" formControlName="numFactura" placeholder="numFactura">
               <span *ngIf="formulario.get('numFactura') && formulario.get('numFactura')!.errors && formulario.get('numFactura')!.touched">
                 Por favor, ingrese solo texto en el campo de nombre.
               </span>
@@ -68,7 +69,8 @@
               </!--span-->
             </div>
             <div style="width: auto;">            
-              <input style="border-radius: 0px 5px 5px 0px;margin-left: 4px;" class="disabled-input" type="text" formControlName="razonSocial" placeholder="nombre" [value]="clienteSeleccionado?.nombre" >
+              <input style="border-radius: 0px 5px 5px 0px;margin-left: 4px;" class="disabled-input" 
+              type="text" formControlName="razonSocial" placeholder="nombre" [value]="clienteSeleccionado?.nombre" >
               <span *ngIf="formulario.get('razonSocial')!.invalid && (formulario.get('razonSocial')!.dirty || formulario.get('razonSocial')!.touched)">
                 Por favor, ingrese un valor válido.
               </span>
@@ -81,9 +83,8 @@
           </TD>
           <TD>
             <div>  
-              <input style="width: 220%; margin-left: 0%;border-radius: 5px; background-color: #9e9d9d; color: black; font-size: larger;" 
-              type="text" formControlName="ruc" placeholder="NIT" 
-              [value]="clienteSeleccionado?.rucDni" >
+              <input style="margin-left: 0%;border-radius: 5px; background-color: #9e9d9d; color: black; font-size: larger;" 
+              type="text" formControlName="ruc" placeholder="NIT" [value]="clienteSeleccionado?.rucDni" >
               <span *ngIf="formulario.get('ruc')!.invalid && (formulario.get('ruc')!.dirty || formulario.get('ruc')!.touched)">
                 Por favor, ingrese un valor válido.
               </span>
@@ -98,7 +99,7 @@
       <br>
       <form [formGroup]="productosForm">
         <div>
-          <table style="width: 90%; text-align: center;border-collapse:collapse; border:none;background-color: transparent; margin: 0 15% 0 18%; color: white;">
+          <table style="width: 100%; text-align: center;border-collapse:collapse; border:none;background-color: transparent; margin: 0 15% 0 0; color: white;">
             <tr style="background-color: transparent;">
               <td style="width: 50%;">
                   <div style="width: 70px;float: left;">
@@ -131,7 +132,7 @@
               </td>
               <td style="width: 14%;">
                 <p style="width: 100%;text-align: end;">Vr. Unitario:</p></td>
-              <td>
+              <td style="width: 14%;">
                 <input min="0" style="border-radius: 5px 5px 5px 5px; margin: 0%; width: 99%;" 
                 type="number" formControlName="valunitario" 
                 (change)="setValUnitario($event.target)" value={{productoSeleccionado?.precio}}>
@@ -152,8 +153,8 @@
     </div>
 
     
-    <div style="width: 66.2%; margin: 0 15% 0 20.5%;color: rgb(9, 0, 0);border-collapse:collapse; border:none;">
-      <table [width]="1230" style="border-collapse:collapse; border:none;">
+    <div style="margin: 0 15% 0 7.7%;color: rgb(9, 0, 0);border-collapse:collapse; border:none;">
+      <table style="width: 100%; border-collapse:collapse; border:none;">
         <thead>
           <tr>
             <th style="width: 30%;background-color: rgb(97, 194, 232);">Producto</th>

@@ -13,13 +13,18 @@ export class NuevoComponent {
   existe: boolean = false;
   constructor(private formBuilder: FormBuilder, private clientesService: ClientesService) {
     this.formulario = this.formBuilder.group({
-      rucDni: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(15)]],
+      idCliente: [],
+      rucDni: [],
       nombre: ['', [Validators.required, soloTexto()]],
-      direccion: ['', [Validators.required]],
-      correo: ['', [Validators.required, validarCorreo()]],
+      direccion: [],
+      correo: [],
       celular: ['', [Validators.required]],
       activo: [1],
     });
+  }
+
+  ngOnInit(){
+    this.generarNumeroNit();
   }
 
   onSubmit() {
@@ -37,6 +42,7 @@ export class NuevoComponent {
       console.log('Datos enviados correctamente:', response);
       alert('Datos registrados correctamente');
       this.formulario.reset();
+      this.generarNumeroNit();
     }, error => {
       console.error('Error al enviar datos:', error);
       alert('Error al enviar datos: los campos no cumplen con los formatos requeridos');	
@@ -67,6 +73,15 @@ export class NuevoComponent {
     }, delay);
   }
 
-
+  generarNumeroNit(){
+    this.clientesService.generarNumeroNit().subscribe(
+      (resp: any) => {
+        console.log(resp.data)
+        this.formulario.patchValue({
+          rucDni: resp.data
+        })
+      }
+    )
+  }
   
 }

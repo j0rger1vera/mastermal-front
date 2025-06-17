@@ -1,12 +1,12 @@
 
 <div class="table-container">
   <p class="rojo">
-    Tabla de facturas
+    LISTADO GENERAL DE FACTURACIÓN
   </p>
 
   <div class="buscar">
     <label for="">Buscar: </label>
-    <input type="text" (keyup)="buscar($event)">
+    <input type="text" placeholder="# Factura  ó  Nombre Cliente" (keyup)="buscar($event)">
     
   </div>
 
@@ -17,13 +17,13 @@
         <thead>
           <tr>
             <th>Num Factura</th>
-            <th>NIT</th>
-            <th>Subtotal</th>
-            <th>Igv</th>
+            <th>Nombre cliente</th>
+            <!--th>Subtotal</th-->
+            <!--th>IVA</th-->
             <th>Total Facturado</th>
             <th>Total Abono</th>
             <th>Total Saldo</th>
-            <th class="eliminar">Acciones</th>
+            <!--th class="eliminar">Acciones</th-->
           </tr>
         </thead>
         
@@ -32,16 +32,16 @@
 
           <tr *ngFor="let factura of facturasFiltradas">
             <td>{{ factura.numeroFactura }}</td>
-            <td >{{ factura.rucCliente }}</td>
-            <td>{{ factura.subtotal }}</td>
-            <td>{{ factura.igv }}</td>
+            <td >{{ factura.nombreCliente }}</td>
+            <!--td>{{ factura.subtotal }}</td-->
+            <!--td>{{ factura.igv }}</td-->
             <td>{{ factura.total }}</td>
             <td>{{ factura.abono }}</td>
             <td>{{ factura.saldo }}</td>
-            <td class="eliminar">
+            <!--td class="eliminar">
               <button (click)="eliminarPorId(factura.idFcatura)">❌</button>
 
-            </td>
+            </td-->
           </tr>
         </tbody>
       </table>

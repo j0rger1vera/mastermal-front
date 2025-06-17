@@ -4,7 +4,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  width: 100%;
 }
 
 /* .container {
@@ -19,10 +18,11 @@
 }
 .rutas{
   background-color: rgb(0, 51, 204);
-  height: calc(100vh - 40px);
-  margin: 5px 5px 5px 5px;
+  height: auto;
+  /*height: calc(100vh - 40px);*/
+  margin: 5px 5px 5px 20px;
   border-radius: 20px;
-  width: 99%;
+  width: 97%;
 } 
 
 app-menu{

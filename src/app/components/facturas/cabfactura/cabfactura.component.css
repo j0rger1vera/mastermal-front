@@ -4,8 +4,9 @@
   margin-top: 20px;
   border-radius: 20px;
   padding: 20px;
-  width: 100%;
+  width: 99%;
   position: relative;
+  height: 99%;
 }
 .formulario form, label{
   margin: 5px auto;
@@ -314,7 +315,7 @@ div.separador{
 th, td {
   border: none; 
   padding: 0 8px; 
-  text-align: left; 
+  text-align: left;
 }
 
 th {
@@ -366,7 +367,7 @@ td button.editar, td button.check{
   border-radius: 2px;
   overflow: hidden;
   border: 1px solid #2d2d2d;
-  margin-right: 13.2%;
+  margin-right: 15%;
 }
 
 .valores-a-pagar p{

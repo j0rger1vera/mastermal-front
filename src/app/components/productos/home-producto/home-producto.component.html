@@ -3,51 +3,54 @@
 
 <div class="table-container">
   <p class="rojo">
-    Tabla de productos
+    LISTADO DE PRODUCTOS
   </p>
 
-  <div class="buscar">
-    <label for="">Buscar: </label>
-    <input type="text" (keyup)="buscar($event)">
+  <div style="padding: 30px;">
+
+    <div class="buscar">
+      <label for="">Buscar: </label>
+      <input type="text" placeholder="Código ó Nombre ó Precio" (keyup)="buscar($event)">
+      
+    </div>
+
+    <button id="nuevo" routerLink="/app/producto/nuevo" >Nuevo +</button>
     
-  </div>
+    <div class="separador">
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Activo</th>
+              <th>FechaCreacion</th>
+              <th class="eliminar">Acciones</th>
+            </tr>
+          </thead>
+          
 
-  <button id="nuevo" routerLink="/app/producto/nuevo" >Nuevo +</button>
-  
-  <div class="separador">
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Código</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Activo</th>
-            <th>FechaCreacion</th>
-            <th class="eliminar">Acciones</th>
-          </tr>
-        </thead>
-        
-
-        <tbody>
-          <!-- <tr *ngFor="let persona of personas"> -->
-          <tr *ngFor="let producto of filtroProductos">
-            <td>{{ producto.idProducto }}</td>
-            <td>{{ producto.codigo }}</td>
-            <td >{{ producto.nombre }}</td>
-            <td>{{ producto.precio }}</td>
-            <td>{{ producto.stock }}</td>
-            <td>{{ producto.activo }}</td>
-            <td>{{ producto.fechaCreacion }}</td>
-            <td class="eliminar">
-              <button (click)="eliminarPorId(producto.idProducto)">❌</button>
-              <button class="editar" (click)="toggleModoEdicion(producto)">✏️</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            <!-- <tr *ngFor="let persona of personas"> -->
+            <tr *ngFor="let producto of filtroProductos">
+              <td>{{ producto.idProducto }}</td>
+              <td>{{ producto.codigo }}</td>
+              <td >{{ producto.nombre }}</td>
+              <td>{{ producto.precio }}</td>
+              <td>{{ producto.stock }}</td>
+              <td>{{ producto.activo }}</td>
+              <td>{{ producto.fechaCreacion }}</td>
+              <td class="eliminar">
+                <button (click)="eliminarPorId(producto.idProducto)">❌</button>
+                <button class="editar" (click)="toggleModoEdicion(producto)">✏️</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

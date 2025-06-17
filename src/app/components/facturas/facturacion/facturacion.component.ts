@@ -22,12 +22,6 @@ export class ListaFacturacionComponent {
   getData(){
     this.facturasService.getFacturacion().subscribe(data => {
       this.facturas = data;
-      /*this.facturas.forEach((fact) => {
-        if(fact.rucCliente==){
-
-        }
-
-      });*/
       this.facturasFiltradas = data;
       
     })
@@ -47,12 +41,8 @@ export class ListaFacturacionComponent {
     const input = texto.target as HTMLInputElement;
     console.log(this.facturasFiltradas)
     this.facturasFiltradas = this.facturas.filter( (factura: any) =>
-      factura.idFcatura.toString().includes(input.value.toLowerCase()) ||
-      factura.numeroFactura.toString().includes(input.value.toLowerCase()) ||
-      factura.rucCliente.toString().includes(input.value.toLowerCase()) ||
-     factura.subtotal.toString().includes(input.value.toLowerCase()) ||
-     factura.igv.toString().includes(input.value.toLowerCase()) ||
-     factura.total.toString().includes(input.value.toLowerCase())
+      factura.nitCliente.toString().includes(input.value) ||
+      factura.nombreCliente.toString().includes(input.value)
     );
   }
 
