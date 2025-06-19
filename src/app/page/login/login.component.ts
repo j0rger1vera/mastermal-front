@@ -55,7 +55,7 @@ export class LoginComponent {
               break;
             case 200:
               this.mensajeLogin = response.data;
-              this.router.navigate(['/app/cliente']);
+              this.router.navigate(['/app/factura']);
               console.log("se r")
               break;
             case 401:
