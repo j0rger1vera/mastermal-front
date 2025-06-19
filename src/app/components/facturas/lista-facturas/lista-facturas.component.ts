@@ -49,6 +49,12 @@ export class ListaFacturasComponent {
     );
   }
 
-
+  filterTable(texto: Event) {
+    const input = texto.target as HTMLInputElement;
+    console.log(this.facturasFiltradas)
+    this.facturasFiltradas = this.facturas.filter( (factura: any) =>
+      factura.fechaFacturada.toString().includes(input.value)
+    );
+  }
 
 }
