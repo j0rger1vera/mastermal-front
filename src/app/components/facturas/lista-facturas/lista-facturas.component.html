@@ -6,8 +6,7 @@
 
   <div class="buscar">
     <label for="">Buscar: </label>
-    <input type="text" placeholder="# Factura  ó  Nombre Cliente" (keyup)="buscar($event)">
-    
+    <input type="text" placeholder="# Factura  ó  Nombre Cliente" (keyup)="buscar($event)">        
   </div>
 
   
@@ -23,6 +22,9 @@
             <th>Total Facturado</th>
             <th>Total Abono</th>
             <th>Total Saldo</th>
+            <th><input style="border-radius: 8px; font-size: 16px;padding: 4px;
+  border: 1px solid rgb(182, 182, 182);" type="text" placeholder="Filtro fecha facturación" (keyup)="filterTable($event)">
+            </th>
             <!--th class="eliminar">Acciones</th-->
           </tr>
         </thead>
@@ -38,6 +40,7 @@
             <td>{{ factura.total }}</td>
             <td>{{ factura.abono }}</td>
             <td>{{ factura.saldo }}</td>
+            <td>{{ factura.fechaFacturada }}</td>
             <!--td class="eliminar">
               <button (click)="eliminarPorId(factura.idFcatura)">❌</button>
 
