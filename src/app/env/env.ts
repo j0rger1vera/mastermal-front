@@ -1,4 +1,5 @@
 export const environment = {
-  //ApiUrl: 'http://facturador-mastermal-env-dev-db.eba-hhpufdmm.us-east-1.elasticbeanstalk.com/api/v1'
-  ApiUrl: 'http://localhost:5000/api/v1'
+  //ApiUrl: 'http://localhost:8080'
+  //ApiUrl: 'http://factura-env.eba-e3t3gae3.us-east-1.elasticbeanstalk.com'
+  ApiUrl: 'https://mastermalbackend.onrender.com'
 };
