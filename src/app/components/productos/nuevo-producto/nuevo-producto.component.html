@@ -4,9 +4,9 @@
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div>
-      <input type="text" pattern="[a-zA-Z0-9]*" formControlName="codigo" placeholder="Codigo" (keyup)="validarCodigo($event)">
+      <input type="text" pattern="[0-9]*" formControlName="codigo" placeholder="Codigo" (keyup)="validarCodigo($event)">
       <span *ngIf="formulario.get('codigo') && formulario.get('codigo')!.errors && formulario.get('codigo')!.touched">
-        Por favor, ingrese un valor válido.
+        Por favor, ingrese un valor númerico.
       </span>
       <span *ngIf="existe">Código de producto ya existe</span>
     </div>
