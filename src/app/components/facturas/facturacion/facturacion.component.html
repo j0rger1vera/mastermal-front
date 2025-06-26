@@ -24,7 +24,8 @@
 
     <div class="buscar">
       <label for="">Buscar: </label>
-      <input type="text" placeholder="NIT ó Cliente" (keyup)="buscar($event)">
+      <input type="text" placeholder="NIT ó Cliente" (keyup)="buscar($event)"
+      style="text-transform: uppercase">
       
     </div>
     
@@ -47,7 +48,7 @@
           <tbody>
             <tr *ngFor="let factura of facturasFiltradas">
               <td>{{ factura.nitCliente }}</td>
-              <td>{{ factura.nombreCliente }}</td>
+              <td style="text-transform: uppercase !important;">{{ factura.nombreCliente }}</td>
               <td >{{ factura.total }}</td>
               <td>{{ factura.abono }}</td>
               <td>{{ factura.saldo }}</td>
