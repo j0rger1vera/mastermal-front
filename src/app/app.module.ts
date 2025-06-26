@@ -16,6 +16,7 @@ import { HomeProductoComponent } from './components/productos/home-producto/home
 import { NuevoProductoComponent } from './components/productos/nuevo-producto/nuevo-producto.component';
 import { EditarClienteComponent } from './components/clientes/editar-cliente/editar-cliente.component';
 import { EditarProductoComponent } from './components/productos/editar-producto/editar-producto.component';
+import { EditarFacturaComponent } from './components/facturas/editar-factura/editar-factura.component';
 import { LoginComponent } from './page/login/login.component';
 import { PageModule } from './page/page.module';
 import { CabfacturaComponent } from './components/facturas/cabfactura/cabfactura.component';
@@ -36,6 +37,7 @@ import { ListaFacturacionComponent } from './components/facturas/facturacion/fac
     NuevoProductoComponent,
     EditarClienteComponent,
     EditarProductoComponent,
+    EditarFacturaComponent,
     LoginComponent,
     CabfacturaComponent,
     ListaFacturasComponent,
