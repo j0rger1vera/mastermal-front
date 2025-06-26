@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ClientesService } from 'src/app/service/clientes.service';
 import { FacturasService } from 'src/app/service/facturas.service';
 @Component({
   selector: 'app-lista-facturas',
@@ -8,9 +7,14 @@ import { FacturasService } from 'src/app/service/facturas.service';
 })
 export class ListaFacturasComponent {
 
-  facturas: any ; 
-  personaEditar: any;
+  nombreMinuscula: any;
+  filtroNombreMinuscula: any;
+  facturas: any ;
+  facturaEditar: any;
   facturasFiltradas: any;
+  tFacturado: number = 0;
+  tAbonado: number = 0;
+  tSaldo: number = 0;
   modoOculto: boolean = true;
   constructor(private facturasService: FacturasService) {
   }
@@ -22,6 +26,15 @@ export class ListaFacturasComponent {
     this.facturasService.getData().subscribe(data => {
       this.facturas = data;
       this.facturasFiltradas = data;
+        this.tAbonado =0;
+         this.tSaldo =0;
+         this.tFacturado =0;
+      this.facturasFiltradas.forEach((factura: { abono: any; saldo: any; total: any; }) => {
+
+            this.tAbonado = this.tAbonado +factura.abono || 0;
+            this.tSaldo = this.tSaldo + factura.saldo || 0;
+            this.tFacturado = this.tFacturado + factura.total || 0;
+        });
       
     })
   }
@@ -38,15 +51,18 @@ export class ListaFacturasComponent {
   }
   buscar(texto: Event) {
     const input = texto.target as HTMLInputElement;
+    const inputLowerCase = input.value.toLowerCase();
     console.log(this.facturasFiltradas)
     this.facturasFiltradas = this.facturas.filter( (factura: any) =>
-      //factura.idFcatura.toString().includes(input.value.toLowerCase())
       factura.numeroFactura.toString().includes(input.value)
-      || factura.nombreCliente.toString().includes(input.value)
-      //|| factura.rucCliente.toString().includes(input.value.toLowerCase())
-      //|| factura.subtotal.toString().includes(input.value.toLowerCase())
-      //|| factura.total.toString().includes(input.value.toLowerCase())
+      || factura.nombreCliente.toString().includes(inputLowerCase)
     );
+         this.tAbonado =0;
+         this.tSaldo =0;
+         this.tFacturado =0;
+      this.facturasFiltradas.forEach((factura: { abono: any; saldo: any; total: any; }) => {
+        this.sumatoriaTotales(this.tAbonado,this.tSaldo,this.tFacturado,factura);
+        });
   }
 
   filterTable(texto: Event) {
@@ -55,6 +71,29 @@ export class ListaFacturasComponent {
     this.facturasFiltradas = this.facturas.filter( (factura: any) =>
       factura.fechaFacturada.toString().includes(input.value)
     );
+         this.tAbonado =0;
+         this.tSaldo =0;
+         this.tFacturado =0;
+      this.facturasFiltradas.forEach((factura: { abono: any; saldo: any; total: any; }) => {
+        this.sumatoriaTotales(this.tAbonado,this.tSaldo,this.tFacturado,factura);
+        });
   }
 
+  toggleModoEdicion(factura: any) {
+    this.facturaEditar = factura;
+    this.editarModoOcuto()
+    console.log("factura a editar *", this.facturaEditar);
+  }
+  
+  editarModoOcuto(){
+    this.modoOculto = !this.modoOculto;
+    this.getData();
+  }
+
+  sumatoriaTotales(tAbonado: any, tSaldo: any, tFacturado: any, factura: any) {
+    this.tAbonado = this.tAbonado + factura.abono || 0;
+            this.tSaldo = this.tSaldo + factura.saldo || 0;
+            this.tFacturado = this.tFacturado + factura.total || 0;
+
+  }
 }
