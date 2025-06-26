@@ -51,7 +51,7 @@ export class CabfacturaComponent implements DoCheck {
       cliente: ['', [Validators.required]],
       ruc: [],
       razonSocial: ['', [Validators.required]],
-      
+      detalle: [''],
     });
 
     this.productosForm = this.formBuilder.group({
@@ -66,7 +66,6 @@ export class CabfacturaComponent implements DoCheck {
   ngDoCheck() {
     this.validarFormularios();
   }
-  
   
   ngOnInit(){
     this.generarNumeroFactura();
@@ -85,7 +84,6 @@ export class CabfacturaComponent implements DoCheck {
     console.log('Etrasssx...');
 
     this.formulario.patchValue({
-      //ruc: this.clienteSeleccionado.rucDni,
       razonSocial: this.clienteSeleccionado.nombre,
       correo: this.clienteSeleccionado.correo
     });
@@ -99,6 +97,7 @@ export class CabfacturaComponent implements DoCheck {
       "abono": this.abono,
       "saldo": this.credito,
       "fecha": this.fecha,
+      "detalle": this.formulario.value.detalle,
     };
     console.log("Datos a enviar", datosEnviar)
 
@@ -233,7 +232,6 @@ export class CabfacturaComponent implements DoCheck {
     }
   }
 
-
   listarProductos() {
     if(this.productos.length != 0){
       return;
@@ -242,6 +240,7 @@ export class CabfacturaComponent implements DoCheck {
       this.productos = data;
     })
   }
+
   seleccionarProdcuto(idProducto: any): void{
     this.productoSeleccionado = this.productos.find( producto => producto.codigo == idProducto.value);
     this.stockProducto = this.productoSeleccionado.stock;
@@ -252,14 +251,11 @@ export class CabfacturaComponent implements DoCheck {
     
   }
 
-
-
   validarFormularios(){
     if (this.clienteSeleccionado) {
       this.formulario.patchValue({
         ruc: this.clienteSeleccionado.rucDni, //habilita el inputText para digitar un valor
         razonSocial: this.clienteSeleccionado.nombre,
-        //correo: this.clienteSeleccionado.correo,
         fecha: this.clienteSeleccionado.fecha
       });
     } else {
