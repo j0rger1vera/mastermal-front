@@ -6,7 +6,8 @@
 
   <div class="buscar">
     <label for="">Buscar: </label>
-    <input type="text" placeholder="# Factura  ó  Nombre Cliente" (keyup)="buscar($event)">        
+    <input type="text" placeholder="# Factura  ó  Nombre Cliente" (keyup)="buscar($event)"
+    style="text-transform: uppercase">        
   </div>
 
   
@@ -14,12 +15,20 @@
     <div>
       <table>
         <thead>
+          <tr>            
+            <th style="font-weight: bold; size: 24px;">Total Facturado</th>
+            <th style="font-weight: bold; size: 24px;">${{tFacturado | number: '1.2-2'  }}</th>
+            <th style="font-weight: bold; size: 24px;">Total Abonado</th>
+            <th style="font-weight: bold; size: 24px;">${{tAbonado | number: '1.2-2'  }}</th>
+            <th style="font-weight: bold; size: 24px;">Total Saldo</th>
+            <th style="font-weight: bold; size: 24px;">${{tSaldo | number: '1.2-2'  }}</th>
+          </tr>
+          <br>
           <tr>
             <th>Num Factura</th>
             <th>Nombre cliente</th>
-            <!--th>Subtotal</th-->
-            <!--th>IVA</th-->
             <th>Total Facturado</th>
+            <th>Referencia</th>
             <th>Total Abono</th>
             <th>Total Saldo</th>
             <th><input style="border-radius: 8px; font-size: 16px;padding: 4px;
@@ -27,20 +36,20 @@
             </th>
             <!--th class="eliminar">Acciones</th-->
           </tr>
-        </thead>
-        
+        </thead>        
 
         <tbody>
 
           <tr *ngFor="let factura of facturasFiltradas">
             <td>{{ factura.numeroFactura }}</td>
-            <td >{{ factura.nombreCliente }}</td>
-            <!--td>{{ factura.subtotal }}</td-->
-            <!--td>{{ factura.igv }}</td-->
+            <td style="text-transform: uppercase;">{{ factura.nombreCliente }}</td>
             <td>{{ factura.total }}</td>
+            <td>{{ factura.detalle }}</td>
             <td>{{ factura.abono }}</td>
             <td>{{ factura.saldo }}</td>
-            <td>{{ factura.fechaFacturada }}</td>
+            <td>{{ factura.fechaFacturada }}           
+                <button class="editar" (click)="toggleModoEdicion(factura)">✏️</button>
+              </td>
             <!--td class="eliminar">
               <button (click)="eliminarPorId(factura.idFcatura)">❌</button>
 
@@ -51,5 +60,13 @@
     </div>
   </div>
 
+
+  <div class="pup-up" [ngClass]="{ 'oculto': modoOculto }">
+    <div class="pop-up-container">
+      <span class="cerrar" (click)="editarModoOcuto()">❌</span>
+      <app-editarfactura class="editar" [facturaEditar]="facturaEditar" (modoOculto)="editarModoOcuto()"></app-editarfactura>
+      
+    </div>
+  </div>
 
 </div>
