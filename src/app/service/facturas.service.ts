@@ -35,5 +35,8 @@ export class FacturasService {
     return this.http.delete(`${this.URL_API}/cab-factura/${id}`);
   }
 
+  actualizar(datos: any) {
+    return this.http.put(`${this.URL_API}/cab-factura/actualizar`, datos);
+  }
 
 }
