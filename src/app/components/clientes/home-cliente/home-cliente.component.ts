@@ -37,15 +37,12 @@ export class HomeClienteComponent {
   }
   buscar(texto: Event) {
     const input = texto.target as HTMLInputElement;
+    const inputLowerCase = input.value.toLowerCase();
     console.log(input.value);
     console.log(this.clientes);
     this.filtroClientes = this.clientes.filter( (cleinte: any) =>
-      cleinte.idCliente.toString().includes(input.value.toLowerCase()) ||
-      cleinte.rucDni.toLowerCase().includes(input.value.toLowerCase()) ||
-      cleinte.nombre.toLowerCase().includes(input.value.toLowerCase()) ||
-      cleinte.celular.toLowerCase().includes(input.value.toLowerCase()) ||
-      cleinte.direccion.toLowerCase().includes(input.value.toLowerCase()) ||
-      cleinte.correo.toLowerCase().includes(input.value.toLowerCase())
+      cleinte.nombre.toString().toLowerCase().includes(inputLowerCase) ||
+      cleinte.celular.toString().includes(input.value)
     );
     console.log(this.filtroClientes)
   }
