@@ -11,7 +11,8 @@
 
     <div class="buscar">
       <label for="">Buscar: </label>
-      <input type="text"  placeholder="NIT ó Cliente ó Celuar" (keyup)="buscar($event)">
+      <input type="text"  placeholder="NIT ó Cliente ó Celuar" (keyup)="buscar($event)"
+      style="text-transform: uppercase;">
       
     </div>
 
@@ -39,7 +40,7 @@
             <tr *ngFor="let cliente of filtroClientes">
               <!--td>{{ cliente.idCliente }}</!--td>
               <td>{{ cliente.rucDni }}</!td-->
-              <td >{{ cliente.nombre }}</td>
+              <td style="text-transform: uppercase;">{{ cliente.nombre }}</td>
               <td>{{ cliente.direccion }}</td>
               <td>{{ cliente.celular }}</td>
               <td>{{ cliente.correo }}</td>
