@@ -19,6 +19,10 @@ export class FacturasService {
     return this.http.get(`${this.URL_API}/cab-factura/facturacion`);
   }
 
+  getFacturacionPorId(id: number) {
+    return this.http.get(`${this.URL_API}/cab-factura/${id}`);
+  }
+
   guardarCabecera(cabecera: any) {
     return this.http.post(`${this.URL_API}/cab-factura`, cabecera);
   }
@@ -35,8 +39,12 @@ export class FacturasService {
     return this.http.delete(`${this.URL_API}/cab-factura/${id}`);
   }
 
-  actualizar(datos: any) {
-    return this.http.put(`${this.URL_API}/cab-factura/actualizar`, datos);
+  actualizar(cabecera: any) {
+    return this.http.put(`${this.URL_API}/cab-factura/actualizar`, cabecera);
+  }
+
+  getFacturacionPorClienteId(nit: number) {
+    return this.http.get(`${this.URL_API}/cab-factura/cliente/${nit}`);
   }
 
 }
