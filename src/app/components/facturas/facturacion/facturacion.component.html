@@ -40,22 +40,23 @@
               <th>Prestamos</th>
               <th>Abonos</th>
               <th>Saldo Actual</th>
-              <!--th class="eliminar">Acciones</th-->
+              <th style="text-align: center;">Abonar</th>
             </tr>
           </thead>
           
 
           <tbody>
             <tr *ngFor="let factura of facturasFiltradas">
-              <td>{{ factura.nitCliente }}</td>
+              <td>{{ factura.rucCliente }}</td>
               <td style="text-transform: uppercase !important;">{{ factura.nombreCliente }}</td>
               <td >{{ factura.total }}</td>
               <td>{{ factura.abono }}</td>
               <td>{{ factura.saldo }}</td>
-              <!--td-- class="eliminar">
-                <button (click)="eliminarPorId(cliente.idCliente)">❌</button>
-                <button class="editar" (click)="toggleModoEdicion(cliente)">✏️</button>
-              </!--td-->
+              <td style="text-align: center;">
+                <input #abonoInput style="height: 28px; border-radius: 5px; padding-left: 10px; font-size: 15px;" 
+                       type="text" 
+                       (keydown.enter)="onEnter(factura, abonoInput)">
+              </td>
             </tr>
           </tbody>
         </table>
