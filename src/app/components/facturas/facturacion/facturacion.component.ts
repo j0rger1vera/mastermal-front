@@ -54,7 +54,7 @@ export class ListaFacturacionComponent {
     console.log(this.facturasFiltradas)
     
     this.facturasFiltradas = this.facturas.filter( (factura: any) =>
-      factura.nitCliente.toString().includes(input.value) ||
+      factura.rucCliente.toString().includes(input.value) ||
       factura.nombreCliente.toString().includes(inputLowerCase)
     );
   }
